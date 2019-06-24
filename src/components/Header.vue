@@ -7,8 +7,8 @@
       <p class="my-id">Mmmm</p>
     </div>
     <ul class="my-sort">
-      <li v-for="(item, index) in sort" :key="index">
-        <a href="#">{{ item.name }}</a>
+      <li v-for="(item, index) in sort" :key="index" @click="toggle(index)">
+        <a href="#" :class="{active: index === curIndex}">{{ item.name }}</a>
       </li>
     </ul>
   </div>
@@ -18,8 +18,15 @@
 export default {
   data() {
     return {
-      sort: [{ name: "简历" }, { name: "点滴" }, { name: "留言" }]
+      sort: [{ name: "简历" }, { name: "点滴" }, { name: "留言" }],
+      curIndex: 0
     };
+  },
+  methods: {
+    toggle(index) {
+      this.curIndex = index;
+      console.log(this.curIndex, index);
+    }
   }
 };
 </script>
@@ -62,5 +69,8 @@ export default {
   margin: 0 1em;
   display: inline-block;
   color: #948c76;
+}
+.header .my-sort .active {
+  text-decoration: underline;
 }
 </style>
